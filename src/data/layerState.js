@@ -291,6 +291,7 @@ export const LAYER_STATE_REGISTRY = Object.freeze([
   Object.freeze({ id: 'military', token: 'm', disposition: 'enabled+mirrored-options', optionOwner: 'flights' }),
   Object.freeze({ id: 'military-awareness', token: 'g', disposition: 'enabled-only' }),
   Object.freeze({ id: 'military-installations', token: 'i', disposition: 'enabled-only' }),
+  Object.freeze({ id: 'paperclip-telemetry', token: 'j', disposition: 'enabled-only' }),
   Object.freeze({ id: 'radio', token: 'r', disposition: 'enabled+options', optionOwner: 'radio' }),
   Object.freeze({ id: 'rocket-launches', token: 'x', disposition: 'enabled-only' }),
   // 'y' because s/a/i are taken. enabled-only: the layer has no options,
@@ -298,6 +299,7 @@ export const LAYER_STATE_REGISTRY = Object.freeze([
   // asserted to be in lexical order.
   Object.freeze({ id: 'safety', token: 'y', disposition: 'enabled-only' }),
   Object.freeze({ id: 'satellites', token: 's', disposition: 'enabled+options', optionOwner: 'satellites' }),
+  Object.freeze({ id: 'southAfricaFeed', token: 'n', disposition: 'enabled-only' }),
   // 'k' because 's' is satellites. enabled-only for now: the death-toll
   // filter is a view preference rather than layer state a link must carry.
   Object.freeze({ id: 'shootings', token: 'k', disposition: 'enabled-only' }),

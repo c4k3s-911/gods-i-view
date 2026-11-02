@@ -48,6 +48,8 @@ import {
 } from './renderGovernor.js';
 import { installScopeMask } from './scopeMask.js';
 import { initFirstRunExperience } from './firstRunExperience.js';
+import { createPaperclipTelemetryLayer } from './data/paperclipTelemetryLayer.js';
+import { createSAFeedLayer } from './data/sa-layer.js';
 
 initLogoGaze();
 
@@ -298,9 +300,22 @@ async function init() {
     dataManager.register(militaryInstallationsLayer);
     dataManager.register(militaryAwarenessLayer);
     militaryAwarenessLayer.attachDataManager(dataManager);
+
+    // Register Paperclip telemetry layer — connects to VPS control plane
+    const paperclipTelemetryLayer = createPaperclipTelemetryLayer(dataManager, viewer, {
+      refreshInterval: 5000,
+    });
+    paperclipTelemetryLayer.register();
+
+    // Register South Africa feed layer — integrates SA-specific data
+    const saFeedLayer = createSAFeedLayer(dataManager, viewer);
+    saFeedLayer.createAndRegister();
+
+    // Register local data layers (GeoJSON/FIRMS)
     for (const layer of localDataLayers) {
       dataManager.register(layer);
     }
+
     // Restoration starts only after the complete production registry is sealed.
     dataManager.finalizeRegistrations(LAYER_STATE_REGISTRY);
     if (import.meta.env.DEV) {
